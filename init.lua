@@ -232,7 +232,7 @@ require('lazy').setup({
   'ThePrimeagen/harpoon', -- Harpoon
   'kassio/neoterm', -- Terminal in Neovim
   {
-    'Exafunction/codeium.nvim',
+    'Exafunction/windsurf.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'hrsh7th/nvim-cmp',
@@ -241,6 +241,7 @@ require('lazy').setup({
       require('codeium').setup {}
     end,
   },
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
