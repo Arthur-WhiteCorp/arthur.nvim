@@ -1,6 +1,6 @@
 --[[
-
-====================================================================
+--
+===================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
 ========                                    .-----.          ========
@@ -248,6 +248,11 @@ require('lazy').setup({
     'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
     { 'rose-pine/neovim', name = 'rose-pine' },
     { 'akinsho/toggleterm.nvim', version = '*', config = true },
+    {
+        'NStefan002/screenkey.nvim',
+        lazy = false,
+        version = '*', -- or branch = "main", to use the latest commit
+    },
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
     -- keys can be used to configure plugin behavior/loading/etc.
@@ -1016,5 +1021,6 @@ require('lazy').setup({
 
 require 'custom.plugins.configs.toggleterm'
 require 'custom.plugins.configs.rosepine'
+require 'custom.plugins.configs.screenkey'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
