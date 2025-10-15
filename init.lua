@@ -89,7 +89,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 require 'keymaps'
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -247,42 +247,13 @@ require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
     'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
     { 'rose-pine/neovim', name = 'rose-pine' },
+    { 'fei6409/log-highlight.nvim', opts = {} },
     { 'akinsho/toggleterm.nvim', version = '*', config = true },
     {
         'NStefan002/screenkey.nvim',
         lazy = false,
         version = '*', -- or branch = "main", to use the latest commit
     },
-    {
-        'obsidian-nvim/obsidian.nvim',
-        version = '*', -- recommended, use latest release instead of latest commit
-        ft = 'markdown',
-        -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-        -- event = {
-        --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-        --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-        --   -- refer to `:h file-pattern` for more examples
-        --   "BufReadPre path/to/my-vault/*.md",
-        --   "BufNewFile path/to/my-vault/*.md",
-        -- },
-        ---@module 'obsidian'
-        ---@type obsidian.config
-        opts = {
-            workspaces = {
-                {
-                    name = 'personal',
-                    path = '~/vaults/personal',
-                },
-                {
-                    name = 'work',
-                    path = '~/vaults/work',
-                },
-            },
-
-            -- see below for full list of options 👇
-        },
-    },
-
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
     -- keys can be used to configure plugin behavior/loading/etc.
