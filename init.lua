@@ -89,7 +89,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 require 'keymaps'
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -247,6 +247,7 @@ require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
     'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
     { 'rose-pine/neovim', name = 'rose-pine' },
+    { 'fei6409/log-highlight.nvim', opts = {} },
     { 'akinsho/toggleterm.nvim', version = '*', config = true },
     {
         'NStefan002/screenkey.nvim',
