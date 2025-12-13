@@ -253,7 +253,7 @@ require('lazy').setup({
         lazy = false,
         version = '*', -- or branch = "main", to use the latest commit
     },
-   -- NOTE: Plugins can also be added by using a table,
+    -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
     -- keys can be used to configure plugin behavior/loading/etc.
     --
@@ -676,6 +676,7 @@ require('lazy').setup({
             --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             local servers = {
                 clangd = {},
+                neocmakelsp = {},
                 -- gopls = {},
                 -- pyright = {},
                 rust_analyzer = {},
