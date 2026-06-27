@@ -1,3 +1,4 @@
+--
 --[[
 --
 ===================================================================
@@ -245,14 +246,14 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+    { 'NMAC427/guess-indent.nvim', opts = {} }, -- Detect tabstop and shiftwidth automatically
     { 'rose-pine/neovim', name = 'rose-pine' },
     { 'fei6409/log-highlight.nvim', opts = {} },
     { 'akinsho/toggleterm.nvim', version = '*', config = true },
     {
         'NStefan002/screenkey.nvim',
         lazy = false,
-        version = '*', -- or branch = "main", to use the latest commit
+        version = '*', -- or branch = "", to use the latest commit
     },
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
@@ -677,11 +678,14 @@ require('lazy').setup({
             --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             local servers = {
                 clangd = {},
-                cmake = {},
+                prismals = {},
+                neocmake = {},
+                prettierd = {},
+                djlint = {},
+                ginko_ls = {},
                 -- gopls = {},
-                -- pyright = {},
+                pyright = {},
                 rust_analyzer = {},
-                jdtls = {},
                 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
                 --
                 -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -705,8 +709,27 @@ require('lazy').setup({
                         },
                     },
                 },
-            }
+                -- TypeScript/JavaScript (uncomment and configure)
+                ts_ls = {}, -- This will work with defaults from mason-lspconfig
 
+                -- HTML
+                html = { 'handlebars' }, -- Uses vscode-html-language-server
+
+                -- CSS
+                cssls = {}, -- Uses vscode-css-language-server
+
+                -- Emmet (for fast HTML/CSS writing)
+                emmet_ls = {
+                    filetypes = { 'html', 'handlebars', 'css' },
+                    init_options = {
+                        syntaxProfiles = {
+                            handlebars = 'html',
+                        },
+                    },
+                },
+                -- Optional: JSON support
+                jsonls = {},
+            }
             -- Ensure the servers and tools above are installed
             --
             -- To check the current status of installed tools and/or manually install
@@ -779,7 +802,8 @@ require('lazy').setup({
                 -- python = { "isort", "black" },
                 --
                 -- You can use 'stop_after_first' to run the first available formatter from the list
-                -- javascript = { "prettierd", "prettier", stop_after_first = true },
+                javascript = { 'prettierd', 'prettier', stop_after_first = true },
+                html = { 'prettierd', 'prettier', stop_after_first = true },
             },
         },
     },
@@ -1020,9 +1044,26 @@ require('lazy').setup({
 })
 
 -- MY STUFF
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+    callback = function()
+        if not vim.bo.modified then
+            vim.cmd 'checktime'
+        end
+    end,
+})
 
 require 'custom.plugins.configs.toggleterm'
 require 'custom.plugins.configs.rosepine'
 require 'custom.plugins.configs.screenkey'
+require 'custom.plugins.configs.neocmakelsp'
+require 'custom.plugins.configs.emmet_ls'
+require 'custom.plugins.configs.html'
+
+vim.filetype.add {
+    extension = {
+        handlebars = 'handlebars',
+        hbs = 'handlebars',
+    },
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
